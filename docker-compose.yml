@@ -1,0 +1,13 @@
+services:
+  redis:
+    image: redis:7-alpine
+    restart: always
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+    restart: always
